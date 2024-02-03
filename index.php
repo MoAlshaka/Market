@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+require_once("classes/Product.php");
+
+$prod = new Product;
+
+$products = $prod->get_all();
+
 
 ?>
 
@@ -77,135 +83,52 @@ session_start();
                 المنتجات المتاحة
             </div>
             <div class="boxes">
-                <div class="box">
-                    <div class="image">
-                        <img src="imges/lap2.png" alt="">
+                <?php foreach ($products as $product) { ?>
+                    <div class="box">
+                        <div class="image">
+                            <img src="imges/<?php echo $product['image']; ?>" alt="">
+                        </div>
+                        <hr>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <div class="text">
+                            <h3>
+                                <?php echo $product['name']; ?>
+                            </h3>
+                            <p>
+                                <i class="fa-solid fa-display"></i>
+                                حجم الشاشة: <?php echo $product['monitor_size']; ?> بوصة
+                            </p>
+                            <p>
+                                <i class="fa-solid fa-hard-drive"></i>
+                                حجم القرص الصلب: <?php echo $product['hdd_size']; ?> غيغابايت
+                            </p>
+                            <p>
+                                <i class="fa-solid fa-microchip"></i>
+                                المعالج: <?php echo $product['processor']; ?>
+                            </p>
+                            <p>
+                                <i class="fa-solid fa-memory"></i>
+                                ذاكرة الوصول العشوائي: <?php echo $product['memory']; ?> GB
+                            </p>
+                            <p>
+                                <i class="fa-solid fa-tachograph-digital"></i>
+                                بطاقة رسومات: <?php echo $product['amd']; ?>
+                            </p>
+                            <p><i class="fa-solid fa-money-bills"></i>
+                                السعر : <?php echo $product['price']; ?>$</p>
+                            <a href="buynow.php?id=<?php echo $product['id']; ?>">اشترى الان
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </div>
                     </div>
-                    <hr>
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <div class="text">
-                        <h3>
-                            لاب توب لينوفو ايديا باد3
-                        </h3>
-                        <p>
-                            <i class="fa-solid fa-display"></i>
-                            حجم الشاشة: 15,6 بوصة
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-hard-drive"></i>
-                            حجم القرص الصلب: 512 غيغابايت
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-microchip"></i>
-                            المعالج: Ryzen 7 3700U
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-memory"></i>
-                            ذاكرة الوصول العشوائي: 8 GB
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-tachograph-digital"></i>
-                            بطاقة رسومات: AMD RXVega10
-                        </p>
-                        <p><i class="fa-solid fa-money-bills"></i>
-                            السعر : 300$</p>
-                        <a href="buynow.php">اشترى الان
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="image">
-                        <img src="imges/lap3.png" alt="">
-                    </div>
-                    <hr>
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <div class="text">
-                        <h3>
-                            لاب توب العاب اتش بي بافيليون
-                        </h3>
-                        <p>
-                            <i class="fa-solid fa-display"></i>
-                            حجم الشاشة: 15,6 بوصة
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-hard-drive"></i>
-                            حجم القرص الصلب: 1256 غيغابايت
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-microchip"></i>
-                            المعالج: Intel Core i5-11300H
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-memory"></i>
-                            ذاكرة الوصول العشوائي: 8 GB
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-tachograph-digital"></i>
-                            بطاقة رسومات: NVIDIA GTX 1650
-                        </p>
-                        <p><i class="fa-solid fa-money-bills"></i>
-                            السعر : 430$</p>
-                        <a href="buynow1.php" id="click2">اشترى الان
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="image">
-                        <img src="imges/lap4.png" alt="">
-                    </div>
-                    <hr>
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="text">
-                        <h3>
-                            لاب توب لينوفو ايديا باد 5
-                        </h3>
-                        <p>
-                            <i class="fa-solid fa-display"></i>
-                            حجم الشاشة: 15,6 بوصة
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-hard-drive"></i>
-                            حجم القرص الصلب: 512 غيغابايت
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-microchip"></i>
-                            المعالج: Intel Core i7-1165G7
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-memory"></i>
-                            ذاكرة الوصول العشوائي: 16 GB
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-tachograph-digital"></i>
-                            بطاقة رسومات: NVIDIA MX450
-                        </p>
-                        <p><i class="fa-solid fa-money-bills"></i>
-                            السعر : 520$</p>
-                        <a href="buynow2.php" id="click3">اشترى الان
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                    </div>
-                </div>
+
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -225,10 +148,21 @@ session_start();
                     <a href="#"><i class="fa-brands fa-telegram"></i> Telegram</a>
                 </div>
             </div>
-            <div class="inputs">
+            <div id="Submit-error">
+                <?php
+                if (isset($_SESSION["errors"])) {
+                    foreach ($_SESSION["errors"] as $error) {
+                ?>
+                        <p><?php echo $error ?></p>
+                <?php
+                    }
+                    unset($_SESSION["errors"]);
+                } ?>
+            </div>
+            <form class="inputs" action="handlers/handleContact.php" method="post">
                 <div class="input-group">
-                    <label for="UserName">UserName</label>
-                    <input type="text" name="UserName" id="UserName" placeholder="Your Name" onkeyup="UserNameChecker()">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Your Name" onkeyup="UserNameChecker()">
                     <span id="name-error"></span>
                 </div>
                 <div class="input-group">
@@ -238,12 +172,12 @@ session_start();
                 </div>
                 <div class="input-group ">
                     <label for="Subject">Subject</label>
-                    <textarea name="Subject" id="Subject" placeholder="Subject" onkeyup="textareaChecker()""></textarea>
+                    <textarea name="subject" id="Subject" placeholder="Subject" onkeyup="textareaChecker()""></textarea>
                     <span id=" subject-error"></span>
                 </div>
-                    <button class="Submit" onclick="return ValidForm()">Submit</button>
+                    <button class="Submit" onclick="return ValidForm()" name="submit">Submit</button>
                     <span id="Submit-error"></span>
-            </div>
+                </form>
         </div>
     </div>
     <!-- End Contact Us -->

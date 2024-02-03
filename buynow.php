@@ -4,6 +4,13 @@ session_start();
 if (!isset($_SESSION['id'])) {
     header('location:register.php');
 }
+
+require_once('classes/Product.php');
+
+$id = $_GET['id'];
+$prod = new Product;
+$product = $prod->get_one($id);
+
 ?>
 
 <!DOCTYPE html>
@@ -36,14 +43,26 @@ if (!isset($_SESSION['id'])) {
         </nav>
     </header>
     <!-- End Header -->
-    <form class="formBuy">
+    <div id="Submit-error">
+        <?php
+        if (isset($_SESSION["errors"])) {
+            foreach ($_SESSION["errors"] as $error) {
+        ?>
+                <p><?php echo $error ?></p>
+        <?php
+            }
+            unset($_SESSION["errors"]);
+        } ?>
+    </div>
+
+    <form class="formBuy" action="handlers/handleOrder.php?id=<?php echo $product['id']; ?>" method="post">
         <div class="container">
             <h1>املأ جميع الحقول بمعلوماتك الصحيحه</h1>
-            <input type="text" placeholder="اسمك رباعى" required>
-            <input type="email" placeholder="البريد الالكترونى" required>
-            <input type="text" placeholder="رقم تلفونك" required>
-            <input type="text" placeholder="العنوان 1 " required>
-            <input type="text" placeholder="العنوان 2 " required>
+            <input type="text" name="name" placeholder="اسمك رباعى" required>
+            <input type="email" name="email" placeholder="البريد الالكترونى" required>
+            <input type="text" name="phone" placeholder="رقم تلفونك" required>
+            <input type="text" name="address1" placeholder="العنوان 1 " required>
+            <input type="text" name="address2" placeholder="العنوان 2 " required>
             <div class="goodsc">
                 <h2>بيانات المنتج</h2>
                 <span></span>
@@ -51,41 +70,41 @@ if (!isset($_SESSION['id'])) {
             <div class="prod">
                 <div class="prodinfo">
                     <h3>
-                        لاب توب لينوفو ايديا باد3
+                        <?php echo $product['name']; ?>
                     </h3>
                     <p>
                         <i class="fa-solid fa-display"></i>
-                        حجم الشاشة: 15,6 بوصة
+                        حجم الشاشة: <?php echo $product['monitor_size']; ?> بوصة
                     </p>
                     <p>
                         <i class="fa-solid fa-hard-drive"></i>
-                        حجم القرص الصلب: 512 غيغابايت
+                        حجم القرص الصلب: <?php echo $product['hdd_size']; ?> غيغابايت
                     </p>
                     <p>
                         <i class="fa-solid fa-microchip"></i>
-                        المعالج: Ryzen 7 3700U
+                        المعالج: <?php echo $product['processor']; ?>
                     </p>
                     <p>
                         <i class="fa-solid fa-memory"></i>
-                        ذاكرة الوصول العشوائي: 8 GB
+                        ذاكرة الوصول العشوائي: <?php echo $product['memory']; ?> GB
                     </p>
                     <p>
                         <i class="fa-solid fa-tachograph-digital"></i>
-                        بطاقة رسومات: AMD RXVega10
+                        بطاقة رسومات: <?php echo $product['amd']; ?>
                     </p>
                     <p><i class="fa-solid fa-money-bills"></i>
-                        سعر المنتج : 300$
+                        السعر : <?php echo $product['price']; ?>$</p>
                     </p>
                     <p><i class="fa-solid fa-truck-moving"></i>
                         رسوم الشحن:10$
                     </p>
                     <p><i class="fa-solid fa-hand-holding-dollar"></i>
-                        الاجمالى: 310$
+                        الاجمالى: <?php echo $product['price'] + 10; ?>$
                     </p>
 
                 </div>
                 <div class="lapImage">
-                    <img src="imges/lap2.png" alt="">
+                    <img src="imges/<?php echo $product['image']; ?>" alt="">
                     <div class="stars">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -95,7 +114,7 @@ if (!isset($_SESSION['id'])) {
                     </div>
                 </div>
             </div>
-            <input type="submit" id="BuyDone" value="اتمام الشراء">
+            <input type="submit" value="اتمام الشراء" name="submit">
             <div class="messageDone">
                 تم ارسال طلب الشراء
                 <i class="fa-solid fa-check"></i>

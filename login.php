@@ -37,7 +37,7 @@ if (isset($_SESSION['id'])) {
             </ul>
         </nav>
     </header>
-    <div>
+    <div id="Submit-error">
         <?php
         if (isset($_SESSION["errors"])) {
             foreach ($_SESSION["errors"] as $error) {
